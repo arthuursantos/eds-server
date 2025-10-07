@@ -12,10 +12,10 @@ import java.util.UUID;
 public class User {
 
     @Id
-    private UUID id;
+    private UUID id = UUID.randomUUID();
 
     @Indexed(unique = true)
     private String login;
-    private String password;
 
+    private String password;
 }

@@ -10,7 +10,7 @@ class TestContainersConfig {
 
     @Bean
     MongoDBContainer mongoDBContainer() {
-        return new MongoDBContainer("mongo:8");
+        return new MongoDBContainer("mongo:6");
     }
 
     @Bean
