@@ -1,9 +1,7 @@
 package com.vilt.server.repository;
 
-import com.vilt.server.domain.user.User;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import com.vilt.server.domain.user.UserAccount;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.UUID;
-
-public interface UserRepository extends MongoRepository<User, UUID> {
+public interface UserRepository extends JpaRepository<UserAccount, Long> {
 }
