@@ -5,6 +5,7 @@ import com.vilt.server.repository.UserRepository;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -35,6 +36,7 @@ public class UserController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('role_admin')")
     public List<UserResponse> list() {
         return userRepository.findAll()
                 .stream().map(u -> new UserResponse(u.getId(), u.getLogin())).toList();
