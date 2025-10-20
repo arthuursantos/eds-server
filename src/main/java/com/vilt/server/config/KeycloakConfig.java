@@ -18,9 +18,10 @@ public class KeycloakConfig {
             keycloak = KeycloakBuilder.builder()
                     .serverUrl("http://localhost:9090")
                     .realm("master")
-                    .username(System.getenv("KEYCLOAK_ADMIN"))
-                    .password(System.getenv("KEYCLOAK_ADMIN_PASSWORD"))
+                    .grantType("password")
                     .clientId("admin-cli")
+                    .username(System.getenv("KEYCLOAK_USERNAME"))
+                    .password(System.getenv("KEYCLOAK_PASSWORD"))
                     .build();
         }
         return keycloak;
