@@ -19,18 +19,13 @@ public class SecurityConfig {
     @Autowired
     private JwtConverter jwtConverter;
 
-    private static final String[] publicEndpoints = {
-            "/api/user"
-    };
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers(HttpMethod.POST, "/users").permitAll()
-                        .requestMatchers("/api/user").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/user/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer((oauth2) -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtConverter)));

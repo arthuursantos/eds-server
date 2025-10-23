@@ -26,9 +26,10 @@ spring:
         jwt:
           issuer-uri: http://localhost:9090/realms/realm-demo
           jwk-set-uri: http://localhost:9090/realms/realm-demo/protocol/openid-connect/certs
+          token-uri: http://localhost:9090/realms/realm-demo/protocol/openid-connect/token
 
 jwt:
   auth:
     converter:
-      resource-id: demo
+      resource-id: demo-client
       principle-attribute: preferred_username
