@@ -58,7 +58,7 @@ public class KeycloakService {
                 .uri(tokenUri)
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .bodyValue("client_id=" + "demo-client" +
-                        "&client_secret=" + System.getenv("KEYCLOAK_REALM_SECRET") +
+                        "&client_secret=" + System.getenv("KEYCLOAK_CLIENT_SECRET") +
                         "&grant_type=password" +
                         "&username=" + dto.username() +
                         "&password=" + dto.password())
@@ -103,6 +103,5 @@ public class KeycloakService {
         passwordCredentials.setValue(password);
         return passwordCredentials;
     }
-
 
 }

@@ -14,7 +14,7 @@ public class KeycloakController {
 
     private final KeycloakService service;
 
-    @PostMapping
+    @PostMapping("/register")
     public void create(@RequestBody UserDTO dto) {
         service.create(dto);
     }
