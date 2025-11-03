@@ -45,11 +45,7 @@ public class KeycloakService {
         user.setEmail(dto.emailId());
         user.setCredentials(Collections.singletonList(credential));
         user.setEnabled(true);
-        Response response = realmResource().users().create(user);
-
-        if (response.getStatus() == 201) {
-            assignRole(user.getUsername(), "user");
-        }
+        realmResource().users().create(user);
 
     }
 
@@ -65,35 +61,6 @@ public class KeycloakService {
                 .retrieve()
                 .bodyToMono(Object.class)
                 .block();
-    }
-
-    public void assignRole(String userName, String role) {
-
-        String clientUuid = realmResource()
-                .clients()
-                .findByClientId("demo-client")
-                .getFirst()
-                .getId();
-
-        String userId = realmResource()
-                .users()
-                .searchByUsername(userName, true)
-                .getFirst()
-                .getId();
-
-        RoleRepresentation roleRepresentation = realmResource()
-                .clients()
-                .get(clientUuid)
-                .roles()
-                .get(role)
-                .toRepresentation();
-
-        realmResource()
-                .users()
-                .get(userId)
-                .roles()
-                .clientLevel(clientUuid)
-                .add(Collections.singletonList(roleRepresentation));
     }
 
     public CredentialRepresentation createPasswordCredentials(String password) {
